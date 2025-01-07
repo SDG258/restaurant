@@ -1,36 +1,38 @@
 <?php
 include 'header.php';
+$id = !empty($_GET['id']) ? (int)$_GET['id'] : 0;
 $error = '';
-if (isset($_POST['name'])) {
-    $name = $_POST['name'];
-    $status = $_POST['status'];
+if ($id) {
+    $sql = $conn->query("SELECT * FROM  category WHERE id = $id");
+    $cat = $sql->fetch_object();
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+        $status = $_POST['status'];
 
-    if ($name == '') {
-        $error = 'Name category can be empty';
-    }
+        if ($name == '') {
+            $error = 'Name category can be empty';
+        }
 
-    $query = $conn->query("SELECT * FROM category WHERE name = '$name'");
-    if ($query->num_rows > 0) {
-        $error = 'Name category can be used';
-    }
+        if (!$error) {
+            $sql = "UPDATE category  SET name= '$name', status= '$status' WHERE id = $id";
 
-    if (!$error) {
-        $sql = "INSERT INTO category(name, status) VALUE ('$name', '$status')";
-
-        if ($conn->query($sql)) {
-            header('location: category.php');
-            exit();
-        } else {
-            $error = 'Adding a new name category failed';
+            if ($conn->query($sql)) {
+                header('location: category.php');
+                exit();
+            } else {
+                $error = 'Updating a category failed';
+            }
         }
     }
+} else {
+    $error = 'You do not choose name category with edit?';
 }
 ?>
 
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Create Category
+            Edit Category
         </h1>
     </section>
     <section class="content">
@@ -46,7 +48,7 @@ if (isset($_POST['name'])) {
                 <form action="" method="POST" role="form">
                     <div class="form-group">
                         <label for="">Name Category</label>
-                        <input type="text" class="form-control" name="name" placeholder="Input Name">
+                        <input type="text" value="<?php echo $cat->name; ?>" class="form-control" name="name" placeholder="Input Name">
                     </div>
 
                     <div class="form-group">
@@ -54,11 +56,11 @@ if (isset($_POST['name'])) {
 
                         <div class="radio">
                             <label>
-                                <input type="radio" name="status" value="1" checked>
+                                <input type="radio" name="status" value="1" <?php echo $cat->status == 1 ? 'checked' : ''; ?>>
                                 Show
                             </label>
                             <label>
-                                <input type="radio" name="status" value="0">
+                                <input type="radio" name="status" value="0" <?php echo $cat->status == 0 ? 'checked' : ''; ?>>
                                 Hiddent
                             </label>
                         </div>
