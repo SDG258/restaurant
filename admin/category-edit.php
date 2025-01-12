@@ -44,32 +44,33 @@ if ($id) {
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <strong>Error!</strong> <?php echo $error; ?>
                     </div>
-                <?php endif; ?>
-                <form action="" method="POST" role="form">
-                    <div class="form-group">
-                        <label for="">Name Category</label>
-                        <input type="text" value="<?php echo $cat->name; ?>" class="form-control" name="name" placeholder="Input Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Name Category</label>
-
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="status" value="1" <?php echo $cat->status == 1 ? 'checked' : ''; ?>>
-                                Show
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="0" <?php echo $cat->status == 0 ? 'checked' : ''; ?>>
-                                Hiddent
-                            </label>
+                <?php else : ?>
+                    <form action="" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="">Name Category</label>
+                            <input type="text" value="<?php echo $cat->name; ?>" class="form-control" name="name" placeholder="Input Name">
                         </div>
-                    </div>
 
-                    <a href="category.php" type="submit" class="btn btn-success"><i class="fa fa-arrow-left">Back</i></a>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                        <div class="form-group">
+                            <label for="">Name Category</label>
 
-                </form>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="status" value="1" <?php echo $cat->status == 1 ? 'checked' : ''; ?>>
+                                    Show
+                                </label>
+                                <label>
+                                    <input type="radio" name="status" value="0" <?php echo $cat->status == 0 ? 'checked' : ''; ?>>
+                                    Hiddent
+                                </label>
+                            </div>
+                        </div>
+
+                        <a href="category.php" type="submit" class="btn btn-success"><i class="fa fa-arrow-left">Back</i></a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+
+                    </form>
+                <?php endif; ?>
 
             </div>
         </div>

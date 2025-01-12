@@ -214,7 +214,13 @@
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+<script src="plugins/summernote/summernote.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script>
+    $('.desciption').summernote({
+        height: 680
+    })
+</script>
 </body>
 
 </html>
