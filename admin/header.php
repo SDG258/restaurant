@@ -65,11 +65,34 @@ $admin = $_SESSION['admin_login'];
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
+                        <li class="dropdown user user-menu notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?php echo $admin->email; ?></span>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="profile.php">
+                                                <i class="fa fa-user"></i> Update Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="password.php">
+                                                <i class="fa fa-key"></i> Changed your password
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="logout.php">
+                                                <i class="fa fa-share"></i> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -88,7 +111,7 @@ $admin = $_SESSION['admin_login'];
                     </div>
                     <div class="pull-left info">
                         <p><?php echo $admin->name; ?></p>
-                        <a href="logout.php"><i class="fa fa-circle text-danger"></i> Logout</a>
+                        <a href="X"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
